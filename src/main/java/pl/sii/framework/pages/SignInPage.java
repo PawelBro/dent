@@ -36,6 +36,9 @@ public class SignInPage extends Page {
     @FindBy(css = "button[id='submit-login']")
     WebElement submitButton;
 
+    @FindBy(css = "a[data-link-action='display-register-form']")
+    WebElement createAccountLink;
+
     @FindBy(css = ".alert-danger")
     WebElement alertMessage;
 
@@ -65,6 +68,13 @@ public class SignInPage extends Page {
         log.info("Submit login form");
         submitButton.click();
         return this;
+    }
+
+    @Step("User navigate to 'Sign up' page")
+    public SignUpPage signUp() {
+        log.info("Go to 'Sign up' page");
+        createAccountLink.click();
+        return pageFactory.create(SignUpPage.class);
     }
 
     @Step("User checks if alert message is displayed")
